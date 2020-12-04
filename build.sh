@@ -6,7 +6,7 @@ export ARCH=amd64
 
 echo "Preparing system"
 apt update
-apt-get -y install ruby ruby-dev rubygems build-essential python-pip git automake curl
+apt-get -y install ruby ruby-dev rubygems build-essential python-pip git automake
 gem install --no-document fpm
 
 echo "Clonning sources"
@@ -93,5 +93,5 @@ fpm -s dir -t deb --name ${NAME} -f -v ${VERSION} -a ${ARCH} --iteration ${ITER}
 echo "Metadata for the package:"
 dpkg --info ${NAME}_${VERSION}-${ITER}_${ARCH}.deb
 
-echo "Uploading deb file: ${NAME}_${VERSION}-${ITER}_${ARCH}.deb"
-cat ${NAME}_${VERSION}-${ITER}_${ARCH}.deb | curl -s --upload-file - https://sbin.tk
+echo "Saving deb file: ${NAME}_${VERSION}-${ITER}_${ARCH}.deb"
+cp ${NAME}_${VERSION}-${ITER}_${ARCH}.deb /root
